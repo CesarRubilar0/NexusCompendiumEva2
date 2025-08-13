@@ -1,0 +1,405 @@
+/* Google Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Paleta de Colores */
+:root {
+    --azul-noche: #0A2342;
+    --dorado-claro: #D9A852;
+    --verde-bosque: #3E5902;
+    --blanco-humo: #F5F5F5;
+    --blanco: #FFFFFF;
+    --casi-negro: #1A1A1A;
+    --gris-pizarra: #6B7280;
+    --gris-borde: #CED4DA;
+    --rojo-peligro: #DC3545;
+}
+
+/* 1. Estilos Globales y Base */
+body {
+    background-color: var(--blanco-humo);
+    font-family: 'Poppins', sans-serif;
+    color: var(--casi-negro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F5F5F5;
+    color: #1A1A1A;
+}
+
+main {
+    flex: 1;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* 2. Contenedores Principales (Cards y Paneles) */
+.card {
+    background-color: var(--blanco);
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+}
+
+/* 3. Barra de Navegación (Navbar) */
+.navbar-custom {
+    background-color: var(--azul-noche);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.navbar-custom .navbar-brand img {
+    max-height: 50px;
+}
+
+.navbar-custom .nav-link {
+    color: var(--blanco);
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--dorado-claro);
+    background-color: rgba(217, 168, 82, 0.1);
+}
+
+.navbar-custom .nav-link.active {
+    color: var(--dorado-claro);
+    font-weight: 600;
+}
+
+.navbar-custom .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.navbar-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Navbar personalizada */
+.navbar-custom {
+    background-color: #0A2342;
+    padding: 1rem 0;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #FFFFFF;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #D9A852;
+    background-color: rgba(217, 168, 82, 0.1);
+}
+
+/* 4. Botones y Llamadas a la Acción (CTAs) */
+.btn {
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.btn-primary {
+    background-color: var(--verde-bosque);
+    color: var(--blanco);
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #2A3F01;
+    color: var(--blanco);
+}
+
+.btn-secondary {
+    background-color: var(--blanco);
+    color: var(--gris-pizarra);
+    border: 1px solid var(--gris-borde);
+}
+.btn-secondary:hover {
+    background-color: var(--blanco-humo);
+}
+
+.btn-danger {
+    background-color: var(--rojo-peligro);
+    color: var(--blanco);
+    border: none;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+    color: var(--blanco);
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #3E5902;
+    border-color: #3E5902;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover, 
+.btn-primary:focus {
+    background-color: #2A3F01;
+    border-color: #2A3F01;
+}
+
+.btn-outline-secondary {
+    color: #6B7280;
+    border-color: #D1D5DB;
+    background-color: #FFFFFF;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #F5F5F5;
+    color: #6B7280;
+    border-color: #D1D5DB;
+}
+
+/* 5. Formularios */
+.form-label {
+    font-weight: 500;
+    color: var(--casi-negro);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--dorado-claro);
+    box-shadow: 0 0 0 3px rgba(217, 168, 82, 0.25);
+}
+
+/* 6. Tablas de Datos */
+.table thead th {
+    background-color: var(--blanco-humo);
+    color: var(--azul-noche);
+    font-weight: 600;
+    border-bottom: 2px solid #D1D5DB;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #EAEAEA;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.table tbody tr:last-of-type {
+    border-bottom: none;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(217, 168, 82, 0.1);
+}
+
+/* Página de Bienvenida */
+.hero-section {
+    background-color: #FFFFFF;
+    padding: 3rem 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.features-section, 
+.process-section, 
+.innovation-section, 
+.cta-section {
+    padding: 4rem 0;
+}
+
+.features-section {
+    background-color: #FFFFFF;
+}
+
+.process-section {
+    background-color: #F5F5F5;
+}
+
+.innovation-section {
+    background-color: #FFFFFF;
+}
+
+.cta-section {
+    background-color: #0A2342;
+    color: #FFFFFF;
+}
+
+.cta-section h2,
+.cta-section p {
+    color: #FFFFFF;
+}
+
+/* Tarjetas de características */
+.feature-card {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 2rem;
+    height: 100%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: #0A2342;
+    margin-bottom: 1rem;
+}
+
+/* Pasos del proceso */
+.process-step {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    height: 100%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #D9A852;
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem;
+}
+
+.timeline {
+    position: relative;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #D9A852;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+/* Lista de características */
+.feature-list {
+    padding-left: 1.2rem;
+    list-style-type: none;
+}
+
+.feature-list li {
+    position: relative;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.feature-list li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #3E5902;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background-color: var(--azul-noche);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 2rem 0 0;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section h3 {
+    color: #D9A852;
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+}
+
+.footer-section a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: #D9A852;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Contenedor de íconos para la sección de innovación */
+.ai-icon-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 3rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-icon-container i {
+    margin: 10px;
+    filter: drop-shadow(0 0 5px rgba(10, 35, 66, 0.2));
+}
+
+.ai-icon-container .bi-robot {
+    color: #0A2342;
+}
+
+.ai-icon-container .bi-cpu {
+    color: #D9A852;
+}
+
+.ai-icon-container .bi-lightning {
+    color: #3E5902;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .timeline:before {
+        display: none;
+    }
+    
+    .process-step {
+        margin-bottom: 1.5rem;
+    }
+}
