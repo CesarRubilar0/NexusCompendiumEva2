@@ -21,7 +21,7 @@ class CreateUsersTable
                 email VARCHAR(255) NOT NULL UNIQUE,
                 email_verified_at TIMESTAMP NULL,
                 password VARCHAR(255) NOT NULL,
-                role_id BIGINT NOT NULL,
+                role ENUM('admin','docente','estudiante') NOT NULL DEFAULT 'estudiante',
                 institute_id BIGINT DEFAULT 1,
                 remember_token VARCHAR(100) NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

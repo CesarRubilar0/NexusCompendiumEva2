@@ -1182,31 +1182,36 @@ $documentos = $query->orderBy('created_at', 'desc')->paginate(12);
 ✅ Logging completo de generación de reportes
 ```
 
-### **🏆 CONTRIBUCIÓN TOTAL DE SOFÍA AL PROYECTO**
+---
 
-#### **📊 ESTADÍSTICAS DE DESARROLLO:**
-- **📁 Archivos creados:** 15 archivos principales
-- **📝 Líneas de código:** ~2,200 líneas
-- **🎨 Vistas Blade:** 8 vistas completas + 6 partials
-- **🎮 Métodos de controlador:** 16 métodos funcionales
-- **🗄️ Seeders:** 2 seeders específicos
-- **🛣️ Rutas:** 14 rutas de documentos y reportes
-- **🧪 Casos de prueba:** 27 funcionalidades probadas
+## Explicación de la Funcionalidad del Módulo de Documentos y Reportes
 
-#### **🎯 PORCENTAJE DE PARTICIPACIÓN:**
-```
-Sofía: 30% del proyecto total
-├── Sistema de Documentos: 100%
-├── Generación de Reportes: 100%
-├── Export Multi-formato: 100%
-├── Storage y File Management: 100%
-├── Análisis de Datos: 90%
-└── Dashboard de Reportes: 100%
-```
+El módulo de Sofía permite a los usuarios cargar, categorizar y gestionar documentos, así como generar reportes académicos y exportar datos. Facilita la organización de la información y la generación de reportes útiles para la gestión académica.
+
+### ¿Cómo funciona este módulo?
+1. **Carga de documentos:** Los usuarios pueden subir archivos y asociarlos a proyectos, el sistema valida y almacena los documentos.
+2. **Categorización:** Los documentos pueden clasificarse por tipo, facilitando su búsqueda y gestión.
+3. **Generación de reportes:** El sistema permite crear reportes en diferentes formatos (PDF, Excel) para su análisis y presentación.
+
+## Área para Estudiantes de Programación: ¿Qué debes saber de la base de este módulo?
+
+- **Controladores y modelos:**
+  - Los controladores gestionan la lógica de carga y reporte, los modelos representan los datos y reglas de negocio.
+
+- **Almacenamiento de archivos:**
+  - El sistema utiliza el almacenamiento local para guardar los archivos y la base de datos para los metadatos.
+
+- **Exportación de datos:**
+  - Permite generar archivos descargables con la información relevante.
+
+- **Colaboración:**
+  - El módulo de documentos y reportes se integra con los módulos de proyectos y usuarios, asegurando que cada documento esté correctamente asociado y accesible.
+
+Comprender la gestión de archivos y la generación de reportes es clave para aplicaciones académicas y empresariales.
 
 ---
 
-## 📝 **CONCLUSIÓN TÉCNICA PARA SOFÍA**
+## 🎯 **CONCLUSIÓN TÉCNICA PARA SOFÍA**
 
 Sofía desarrolló exitosamente el sistema de documentos y reportes que demuestra:
 
