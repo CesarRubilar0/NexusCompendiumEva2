@@ -7,32 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Rutas para proyectos
-Route::get('/proyectos', function () {
-    return view('proyectos.index');
-});
 
-Route::get('/proyectos/crear', function () {
-    return view('proyectos.create');
-});
+use App\Http\Controllers\ProjectController;
 
-Route::get('/proyectos/{id}', function ($id) {
-    return view('proyectos.show', ['id' => $id]);
-});
-
-Route::get('/proyectos/{id}/editar', function ($id) {
-    return view('proyectos.edit', ['id' => $id]);
-});
-
-// POST para procesar formularios de proyectos
-Route::post('/proyectos', function () {
-    // Aquí iría el código para procesar la creación del proyecto
-    return redirect('/proyectos')->with('success', 'Proyecto creado exitosamente');
-});
-
-Route::put('/proyectos/{id}', function ($id) {
-    // Aquí iría el código para procesar la actualización del proyecto
-    return redirect('/proyectos/'.$id)->with('success', 'Proyecto actualizado exitosamente');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('proyectos', ProjectController::class);
 });
 
 // Rutas para actores de interés

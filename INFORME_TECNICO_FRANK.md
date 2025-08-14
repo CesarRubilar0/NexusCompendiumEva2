@@ -926,17 +926,19 @@ public function filter($request)
 **PP-03: Registro y Autenticación de Usuarios**
 ```
 ✅ Formulario de login responsivo y funcional
-✅ Validación de email y contraseña
-✅ Verificación de usuario existente
-✅ Encriptación segura de contraseñas
-✅ Creación de sesión después del login
-✅ Redirección correcta post-autenticación
-✅ Manejo de errores de credenciales inválidas
+✅ Validación de credenciales
+✅ Verificación de email existente
+✅ Contraseña mínima 6 caracteres
+✅ Manejo de errores de login
+✅ Creación de sesión exitosa
+✅ Redirección después del login
 ✅ Formulario de registro completo
-✅ Validación de email único
+✅ Validación de campos obligatorios
+✅ Email único en el sistema
 ✅ Confirmación de contraseña
-✅ Asignación automática de rol
-✅ Logout con destrucción de sesión
+✅ Asignación de rol por defecto
+✅ Encriptación de contraseña
+✅ Autenticación automática post-registro
 ```
 
 **PP-04: Gestión de Equipos y Directorio**
@@ -994,3 +996,29 @@ El sistema es **seguro, escalable y user-friendly**, proporcionando la base de s
 ---
 
 *Documento técnico generado para facilitar la presentación del trabajo de Frank Oliver Moisés Bustamante Reyes - Instituto Profesional San Sebastián - Agosto 2025*
+
+## Explicación de la Funcionalidad del Módulo de Autenticación y Usuarios
+
+El módulo desarrollado por Frank gestiona el registro, inicio de sesión y administración de usuarios, asegurando que solo personas autorizadas puedan acceder a las funciones del sistema. Permite crear cuentas, iniciar sesión, cerrar sesión y gestionar la información de los usuarios.
+
+### ¿Cómo funciona este módulo?
+1. **Registro:** Los usuarios pueden crear una cuenta proporcionando sus datos, que se almacenan de forma segura en la base de datos.
+2. **Inicio de sesión:** El sistema valida las credenciales y, si son correctas, permite el acceso a las áreas protegidas.
+3. **Gestión de usuarios:** Los usuarios pueden actualizar su información y, según su rol, acceder a funciones adicionales.
+
+## Área para Estudiantes de Programación: ¿Qué debes saber de la base de este módulo?
+
+- **Autenticación:**
+  - Permite identificar a los usuarios y proteger las rutas sensibles del sistema.
+  - Utiliza hashing para almacenar contraseñas de forma segura.
+
+- **Middleware:**
+  - Protege rutas para que solo usuarios autenticados puedan acceder a ciertas funciones.
+
+- **Roles y permisos:**
+  - El sistema puede restringir acciones según el tipo de usuario (admin, docente, estudiante).
+
+- **Colaboración:**
+  - El módulo de autenticación se integra con los módulos de proyectos, documentos y reportes, asegurando que cada usuario vea solo lo que le corresponde.
+
+Entender la autenticación y la gestión de usuarios es clave para crear aplicaciones seguras y confiables.
