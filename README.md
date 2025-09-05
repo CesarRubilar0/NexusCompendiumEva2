@@ -12,7 +12,26 @@ php artisan make:model NuevaEntidad -m
 ```
 Esto creará el modelo en `app/Models/NuevaEntidad.php` y la migración correspondiente en `database/migrations/`.
 
-Edita la migración para definir los campos de la tabla y luego ejecuta:
+### Edita la migración para definir los campos de la tabla
+
+1. Abre el archivo de migración generado en `database/migrations/` (por ejemplo, `2025_09_04_000000_create_nueva_entidad_table.php`).
+2. Dentro del método `up`, ubica la función `Schema::create` y edita la estructura de la tabla usando los métodos de Laravel. Por ejemplo:
+
+```php
+public function up()
+{
+  Schema::create('nueva_entidad', function (Blueprint $table) {
+    $table->id();
+    $table->string('nombre');
+    $table->text('descripcion')->nullable();
+    $table->integer('cantidad');
+    $table->timestamps();
+  });
+}
+```
+
+3. Guarda el archivo.
+4. Luego ejecuta la migración en consola:
 ```sh
 php artisan migrate
 ```
