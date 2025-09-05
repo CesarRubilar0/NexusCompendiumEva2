@@ -1,3 +1,72 @@
+# Cómo crear un CRUD para una nueva funcionalidad
+
+Sigue estos pasos para agregar un CRUD (Crear, Leer, Actualizar, Eliminar) en tu proyecto utilizando comandos `php artisan`:
+
+---
+
+## 1. Crea el Modelo y la Migración
+
+En consola, ejecuta:
+```sh
+php artisan make:model NuevaEntidad -m
+```
+Esto creará el modelo en `app/Models/NuevaEntidad.php` y la migración correspondiente en `database/migrations/`.
+
+Edita la migración para definir los campos de la tabla y luego ejecuta:
+```sh
+php artisan migrate
+```
+
+---
+
+## 2. Crea el Controlador tipo Resource
+
+En consola, ejecuta:
+```sh
+php artisan make:controller NuevaEntidadController --resource
+```
+Esto generará un controlador con todos los métodos necesarios para el CRUD en `app/Http/Controllers/NuevaEntidadController.php`.
+
+---
+
+## 3. Define las Rutas
+
+En `routes/web.php` agrega:
+```php
+use App\Http\Controllers\NuevaEntidadController;
+
+Route::resource('nuevaentidad', NuevaEntidadController::class);
+```
+
+---
+
+## 4. Crea las Vistas Blade
+
+En `resources/views/nuevaentidad/` crea los archivos:
+- `index.blade.php` (listar)
+- `create.blade.php` (formulario crear)
+- `edit.blade.php` (formulario editar)
+- `show.blade.php` (detalle)
+
+Puedes usar los métodos del controlador para pasar datos a estas vistas.
+
+---
+
+## 5. Conecta Todo
+
+- El usuario accede a `/nuevaentidad` → se muestra la lista.
+- Puede crear, editar, ver o eliminar registros usando los botones y formularios de las vistas.
+- El controlador gestiona la lógica y usa el modelo para interactuar con la base de datos.
+
+---
+
+## 6. (Extra) Agrega Validaciones y Mensajes
+
+En el controlador, usa `$request->validate([...])` para validar datos antes de guardar o actualizar.
+
+---
+
+¡Listo! Así puedes agregar cualquier CRUD siguiendo la estructura y buenas prácticas de tu proyecto usando `php artisan`.
 # Documentación de Funcionalidades y Arquitectura MVC  
 **Proyecto: Nexus Compendium**
 
