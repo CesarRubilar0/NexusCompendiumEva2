@@ -1,61 +1,164 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Documentación de Funcionalidades y Arquitectura MVC  
+**Proyecto: Nexus Compendium**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## Índice
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. [Introducción](#introducción)
+2. [Resumen de Funcionalidades](#resumen-de-funcionalidades)
+3. [Estructura MVC y Flujo de Interacción](#estructura-mvc-y-flujo-de-interacción)
+4. [Detalle de Funcionalidades](#detalle-de-funcionalidades)
+5. [Relación entre Funcionalidades y MVC](#relación-entre-funcionalidades-y-mvc)
+6. [Notas Finales](#notas-finales)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Introducción
 
-## Learning Laravel
+Nexus Compendium es una plataforma web para la gestión de proyectos de vinculación con el medio, orientada a instituciones educativas. El sistema sigue una arquitectura MVC (Modelo-Vista-Controlador) inspirada en Laravel, aunque con una implementación personalizada.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Resumen de Funcionalidades
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Autenticación de usuarios** (login, registro)
+- **Gestión de usuarios** (CRUD)
+- **Gestión de proyectos** (CRUD, asignación de participantes)
+- **Gestión de áreas académicas**
+- **Gestión de institutos**
+- **Gestión de actores de interés**
+- **Gestión de roles**
+- **Gestión de reportes**
+- **Panel de control (dashboard)**
+- **Asistente de ayuda (ChatGPT)**
+- **Sistema de rutas personalizado**
+- **Sistema de vistas Blade**
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Estructura MVC y Flujo de Interacción
 
-### Premium Partners
+### 1. **Modelo (app/Models)**
+Representa la lógica de datos y las entidades principales:
+- [`User`](app/Models/User.php)
+- [`Project`](app/Models/Project.php)
+- [`Role`](app/Models/Role.php)
+- [`Institute`](app/Models/Institute.php)
+- Otros: [`AreaAcademica`](app/Models/AreaAcademica.php), [`EstadoProyecto`](app/Models/EstadoProyecto.php), etc.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. **Controlador (app/Http/Controllers)**
+Gestiona la lógica de negocio y responde a las solicitudes del usuario:
+- [`ProjectController`](app/Http/Controllers/ProjectController.php)
+- [`AreaAcademicaController`](app/Http/Controllers/AreaAcademicaController.php)
+- [`ChatGPTController`](app/Http/Controllers/ChatGPTController.php)
+- Otros controladores para usuarios, actores, etc.
 
-## Contributing
+### 3. **Vista (resources/views)**
+Presenta la información al usuario usando plantillas Blade:
+- Ejemplo: `proyectos/index.blade.php`, `usuarios/index.blade.php`, `dashboard/dashboard.blade.php`, etc.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. **Rutas (routes/web.php)**
+Define las URLs y asocia cada ruta a un controlador o vista.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Detalle de Funcionalidades
 
-## Security Vulnerabilities
+### 1. **Autenticación**
+- **Login y registro**: Permite acceso seguro y registro de nuevos usuarios.
+- **MVC**:  
+  - Modelo: [`User`](app/Models/User.php)  
+  - Controlador: (no visible, pero gestionado en rutas y helpers)  
+  - Vista: `auth/login.blade.php`, `auth/registro.blade.php`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 2. **Gestión de Usuarios**
+- **CRUD de usuarios**: Crear, listar, editar y eliminar usuarios.
+- **MVC**:  
+  - Modelo: [`User`](app/Models/User.php)  
+  - Controlador: (lógica en rutas y helpers)  
+  - Vista: `usuarios/index.blade.php`, `usuarios/create.blade.php`, `usuarios/show.blade.php`
 
-## License
+### 3. **Gestión de Proyectos**
+- **CRUD de proyectos**: Administración de proyectos, asignación de participantes, seguimiento de estado.
+- **MVC**:  
+  - Modelo: [`Project`](app/Models/Project.php)  
+  - Controlador: [`ProjectController`](app/Http/Controllers/ProjectController.php)  
+  - Vista: `proyectos/index.blade.php`, `proyectos/create.blade.php`, `proyectos/show.blade.php`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 4. **Gestión de Áreas Académicas**
+- **CRUD de áreas**: Permite definir y administrar áreas académicas.
+- **MVC**:  
+  - Modelo: [`AreaAcademica`](app/Models/AreaAcademica.php)  
+  - Controlador: [`AreaAcademicaController`](app/Http/Controllers/AreaAcademicaController.php)  
+  - Vista: `areas/index.blade.php`, `areas/create.blade.php`
+
+### 5. **Gestión de Institutos**
+- **CRUD de institutos**: Administración de organizaciones aliadas.
+- **MVC**:  
+  - Modelo: [`Institute`](app/Models/Institute.php)  
+  - Controlador: (lógica en rutas y helpers)  
+  - Vista: `institutos/index.blade.php`
+
+### 6. **Gestión de Actores de Interés**
+- **CRUD de actores**: Permite registrar y administrar actores relevantes para los proyectos.
+- **MVC**:  
+  - Modelo: [`TiposActor`](app/Models/TiposActor.php)  
+  - Controlador: (lógica en rutas y helpers)  
+  - Vista: `actores/index.blade.php`, `actores/create.blade.php`
+
+### 7. **Gestión de Roles**
+- **Definición y asignación de roles**: Control de permisos y accesos.
+- **MVC**:  
+  - Modelo: [`Role`](app/Models/Role.php)  
+  - Controlador: (lógica en seeders y helpers)  
+  - Vista: (integrada en formularios de usuario)
+
+### 8. **Reportes**
+- **Generación de reportes**: Métricas y estadísticas de proyectos y usuarios.
+- **MVC**:  
+  - Modelo: (datos agregados de modelos principales)  
+  - Controlador: (lógica en rutas y helpers)  
+  - Vista: `reportes/index.blade.php`, `reportes/generar.blade.php`
+
+### 9. **Panel de Control (Dashboard)**
+- **Vista centralizada**: Estadísticas y accesos rápidos.
+- **MVC**:  
+  - Modelo: (datos agregados de modelos principales)  
+  - Controlador: (lógica en rutas y helpers)  
+  - Vista: `dashboard/dashboard.blade.php`
+
+### 10. **Asistente de Ayuda (ChatGPT)**
+- **Chat en modal**: Asistente virtual para ayuda contextual.
+- **MVC**:  
+  - Controlador: [`ChatGPTController`](app/Http/Controllers/ChatGPTController.php)  
+  - Vista: `components/chatgpt.blade.php`  
+  - Rutas: `/chatgpt`, `/chatgpt/ask`
+
+---
+
+## Relación entre Funcionalidades y MVC
+
+- **Modelos**: Representan las entidades y relaciones de la base de datos.
+- **Controladores**: Reciben las solicitudes del usuario, procesan la lógica y seleccionan la vista adecuada.
+- **Vistas**: Presentan los datos al usuario y reciben la interacción.
+- **Rutas**: Definen el flujo de navegación y conectan URLs con controladores/vistas.
+
+**Ejemplo de flujo:**  
+1. Usuario accede a `/proyectos`  
+2. La ruta llama a `ProjectController@index`  
+3. El controlador obtiene los proyectos desde el modelo  
+4. Se retorna la vista `proyectos/index.blade.php` con los datos
+
+---
+
+## Notas Finales
+
+- El sistema utiliza un **routing personalizado** ([`Route`](app/Support/Facades/Route.php)) para mapear URLs a controladores o vistas.
+- Las migraciones y seeders ([database/migrations](database/migrations/), [database/seeders](database/seeders/)) preparan la estructura y datos iniciales.
+- El sistema de vistas Blade permite reutilización y herencia de layouts.
+- La arquitectura facilita la escalabilidad y el mantenimiento del código.
+
+---
+
+**Para más detalles técnicos, consulta el archivo [README.md](README.md) y la documentación de cada modelo y controlador.**
