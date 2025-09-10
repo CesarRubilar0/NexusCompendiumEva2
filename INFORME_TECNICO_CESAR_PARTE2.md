@@ -109,6 +109,288 @@ Este enfoque modular y seguro es la base de muchas aplicaciones web modernas, y 
 
 ---
 
+
+
+
+
+
+
+
+
+---
+
+## 8. Diagrama de Flujo General del Sistema
+
+```mermaid
+flowchart TD
+  Login[Login de Usuario] -->|Credenciales válidas| Dashboard[Dashboard Principal]
+  Dashboard --> Proyectos[Gestión de Proyectos (CRUD)]
+  Dashboard --> Usuarios[Gestión de Usuarios y Roles (CRUD)]
+  Dashboard --> Actores[Gestión de Actores (CRUD)]
+  Dashboard --> Documentos[Gestión de Documentos (CRUD)]
+  Dashboard --> Reportes[Reportes y Estadísticas]
+  Dashboard --> Chatbot[Chatbot IA]
+  Proyectos -->|Adjuntar| Documentos
+  Usuarios -->|Asignar| Roles
+  Chatbot -->|Consulta| IA[Respuesta IA]
+```
+
+---
+
+## 9. Ejemplo Visual de Interfaz (Mockup Simplificado)
+
+```plaintext
+------------------------------------------------------
+|  Dashboard Nexus Compendium                        |
+------------------------------------------------------
+| [Proyectos] [Usuarios] [Actores] [Reportes] [IA]   |
+------------------------------------------------------
+|  Tarjeta: Proyectos Activos: 12                    |
+|  Tarjeta: Usuarios Registrados: 50                 |
+|  Tarjeta: Documentos Subidos: 30                   |
+------------------------------------------------------
+|  Acceso rápido:                                   |
+|   - Crear Proyecto                                |
+|   - Nuevo Usuario                                 |
+|   - Consultar Chatbot                             |
+------------------------------------------------------
+```
+
+---
+
+## 10. Ejemplo de Mensaje de Error y Éxito
+
+```plaintext
+// Ejemplo de mensaje de éxito tras crear un proyecto
+¡Proyecto creado exitosamente!
+
+// Ejemplo de error 404
+Error 404: La página solicitada no existe o no se encuentra disponible.
+
+// Ejemplo de error 403
+Error 403: No tienes permisos para acceder a esta sección.
+```
+
+# Documentación Detallada de Funcionalidades: Proyecto Nexus Compendium
+
+---
+
+## 1. CRUD de César: Proyectos, Actores y Usuarios
+
+### ¿Qué es un CRUD?
+CRUD significa Crear, Leer, Actualizar y Eliminar. Es el conjunto de operaciones básicas para gestionar datos en una aplicación web.
+
+### ¿Qué implementó César?
+César desarrolló el CRUD para las entidades principales del sistema: Proyectos, Actores de Interés y Usuarios. Esto permite a los administradores y usuarios autorizados gestionar toda la información relevante desde la web.
+
+### ¿Cómo funciona el CRUD?
+
+#### a) Crear (Create)
+- **Ruta:** `/proyectos/crear`, `/usuarios/crear`, `/actores/crear`
+- **Vista:** Formulario donde el usuario ingresa los datos.
+- **Ejemplo:**
+  ```php
+  // routes/web.php
+  Route::get('/proyectos/crear', function () {
+    return view('proyectos.create');
+  });
+  ```
+  En la vista `proyectos/create.blade.php`:
+  ```blade
+  <form action="/proyectos" method="POST">
+    @csrf
+    <input type="text" name="nombre" placeholder="Nombre del proyecto">
+    <button type="submit">Guardar</button>
+  </form>
+  ```
+
+#### b) Leer (Read)
+- **Ruta:** `/proyectos`, `/usuarios`, `/actores`
+- **Vista:** Listado de todos los registros.
+- **Ejemplo:**
+  ```php
+  Route::get('/proyectos', [ProjectController::class, 'index']);
+  ```
+  En la vista `proyectos/index.blade.php`:
+  ```blade
+  @foreach($proyectos as $proyecto)
+    <tr>
+      <td>{{ $proyecto->nombre }}</td>
+      <td><a href="/proyectos/{{ $proyecto->id }}">Ver</a></td>
+    </tr>
+  @endforeach
+  ```
+
+#### c) Actualizar (Update)
+- **Ruta:** `/proyectos/{id}/editar`, `/usuarios/{id}/editar`, `/actores/{id}/editar`
+- **Vista:** Formulario con los datos actuales para modificar.
+- **Ejemplo:**
+  ```php
+  Route::get('/proyectos/{id}/editar', [ProjectController::class, 'edit']);
+  Route::put('/proyectos/{id}', [ProjectController::class, 'update']);
+  ```
+  En la vista `proyectos/edit.blade.php`:
+  ```blade
+  <form action="/proyectos/{{ $proyecto->id }}" method="POST">
+    @csrf
+    @method('PUT')
+    <input type="text" name="nombre" value="{{ $proyecto->nombre }}">
+    <button type="submit">Actualizar</button>
+  </form>
+  ```
+
+#### d) Eliminar (Delete)
+- **Ruta:** Acción desde el listado o detalle.
+- **Ejemplo:**
+  ```blade
+  <form action="/proyectos/{{ $proyecto->id }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit">Eliminar</button>
+  </form>
+  ```
+
+### ¿Por qué y para qué?
+- Permite mantener la información actualizada y organizada.
+- Facilita la administración de los datos clave del sistema.
+- Mejora la experiencia del usuario y la eficiencia operativa.
+
+### ¿Cómo lo hace?
+- Usa rutas en `web.php`, controladores dedicados y vistas Blade.
+- Valida los datos antes de guardarlos o actualizarlos.
+- Redirige y muestra mensajes de éxito o error según la acción.
+
+---
+
+## 2. CRUD de Frank: Usuarios y Roles
+
+Frank se encargó de la gestión avanzada de usuarios y roles, permitiendo asignar permisos y controlar el acceso a diferentes partes del sistema.
+
+### Ejemplo de funcionalidad:
+- Crear usuario con rol específico.
+- Editar roles de usuarios existentes.
+- Listar usuarios y filtrar por rol.
+
+```php
+// routes/web.php
+Route::get('/usuarios', [UserController::class, 'index']);
+Route::post('/usuarios', [UserController::class, 'store']);
+```
+
+En la vista:
+```blade
+@foreach($usuarios as $usuario)
+  <td>{{ $usuario->nombre }}</td>
+  <td>{{ $usuario->rol->nombre }}</td>
+@endforeach
+```
+
+---
+
+## 3. CRUD de Sofía: Proyectos y Documentos
+
+Sofía implementó la gestión de proyectos y documentos asociados, permitiendo adjuntar archivos, ver detalles y editar información relevante.
+
+### Ejemplo de funcionalidad:
+- Subir documentos a un proyecto.
+- Ver y descargar documentos asociados.
+- Editar información de proyectos y documentos.
+
+```php
+// routes/web.php
+Route::post('/proyectos/{id}/documentos', [DocumentoController::class, 'store']);
+```
+
+En la vista:
+```blade
+<form action="/proyectos/{{ $proyecto->id }}/documentos" method="POST" enctype="multipart/form-data">
+  @csrf
+  <input type="file" name="documento">
+  <button type="submit">Subir</button>
+</form>
+```
+
+---
+
+## 4. Chatbot de Eduardo: Asistente de IA
+
+Eduardo integró un chatbot de IA para asistencia y consultas rápidas.
+
+### ¿Cómo funciona?
+- El usuario accede a `/chatgpt`.
+- Escribe su pregunta y la envía.
+- El sistema procesa la consulta y responde usando un modelo de IA (por ejemplo, OpenAI).
+
+#### Ejemplo de uso:
+```blade
+<form id="chatgpt-form">
+  <textarea name="prompt"></textarea>
+  <button type="submit">Enviar</button>
+</form>
+```
+
+En el controlador:
+```php
+public function askChatGPT(Request $request) {
+  $respuesta = $this->servicioIA->consultar($request->input('prompt'));
+  return response()->json(['respuesta' => $respuesta]);
+}
+```
+
+---
+
+## 5. Dashboard de Pablo: Panel de Control
+
+Pablo diseñó el dashboard principal, que centraliza la navegación y muestra estadísticas clave.
+
+### ¿Cómo funciona?
+- Tras iniciar sesión, el usuario es redirigido a `/dashboard`.
+- El dashboard muestra tarjetas con métricas, accesos rápidos y enlaces a las secciones principales.
+
+#### Ejemplo de vista:
+```blade
+<div class="dashboard-stats">
+  <div class="stat-card">
+    <h3>{{ $proyectosActivos }}</h3>
+    <p>Proyectos Activos</p>
+  </div>
+  <div class="stat-card">
+    <h3>{{ $usuarios }}</h3>
+    <p>Usuarios Registrados</p>
+  </div>
+</div>
+```
+
+---
+
+## 6. Resumen: ¿Cómo coexisten y funcionan juntos?
+
+- El CRUD de César, Frank y Sofía permite gestionar toda la información relevante (proyectos, usuarios, documentos, actores).
+- El chatbot de Eduardo ofrece asistencia y respuestas rápidas a los usuarios.
+- El dashboard de Pablo centraliza la información y facilita la navegación.
+- Todos los módulos están conectados mediante rutas, controladores y vistas, compartiendo la base de datos y la autenticación.
+- El sistema usa middlewares para proteger rutas y asegurar que solo usuarios autorizados accedan a ciertas funciones.
+
+---
+
+## 7. Códigos de Estado HTTP (Errores y Éxitos)
+
+- **200 OK:** Todo funcionó correctamente, la página o acción se ejecutó sin problemas.
+- **201 Created:** Un recurso fue creado exitosamente (por ejemplo, al crear un proyecto).
+- **400 Bad Request:** La solicitud es incorrecta o faltan datos.
+- **401 Unauthorized:** El usuario no está autenticado.
+- **403 Forbidden:** El usuario no tiene permisos para acceder.
+- **404 Not Found:** La ruta o recurso solicitado no existe (por ejemplo, si falta una vista o ruta).
+- **500 Internal Server Error:** Error inesperado en el servidor.
+
+### Ejemplo de error 404:
+Si intentas acceder a `/actores/crear` y no existe la vista o la ruta, verás un error 404.
+
+---
+
+> Esta documentación sirve como guía para entender cómo cada parte del sistema contribuye al funcionamiento general y cómo interactúan entre sí para ofrecer una experiencia completa y robusta.
+
+
 Este informe se centra únicamente en las tareas de desarrollo y comunicación de componentes realizadas por César, sin incluir actividades de testing ni validación de funcionalidades.
 
 De esta forma, la participación de César es fundamental para la gestión de proyectos y su correcta integración con la autenticación, roles y vistas del sistema, asegurando un flujo de trabajo robusto y colaborativo.
